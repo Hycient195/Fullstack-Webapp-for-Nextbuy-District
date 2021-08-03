@@ -19,6 +19,4 @@ app.use(express.json())
 app.use('/api/products', route)
 
 /* For all 404 or invalid URLs */
-app.use((req, res, next)=>{
-    res.json({message : 'Invalid URL'})
-})
+
