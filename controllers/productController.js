@@ -39,6 +39,7 @@ const addProduct = asyncHandler(async(req, res)=>{
             itemName, itemPrice, itemQuantity, seller
         })
         res.status(200)
+        console.log([product])
         res.json(product)
     } catch (err) {
         res.status(404)
