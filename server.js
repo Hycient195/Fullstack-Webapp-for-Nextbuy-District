@@ -19,7 +19,8 @@ app.listen(7000, ()=>{
 /* Middleware */
 app.use(express.json())
 app.use(cors({
-    origin : '*'
+    origin : '*',
+    methods : [ 'GET', 'POST', 'PUT', 'DELETE' ],
 }))
 app.use('/api/products', route)
 
