@@ -16,6 +16,8 @@ app.listen(PORT, ()=>{
     console.log(`Server started on port ${PORT}`)
 })
 
+app.set('json spaces', 2)
+
 /* Middleware */
 app.use(express.json())
 app.use(cors({
