@@ -7,9 +7,10 @@ const getProducts = asyncHandler(async(req, res)=>{
     const product = await ProductModel.find({})
 
     if(product){
-        res.status(200)
-        // res.send(product)
-        res.json(product)
+        // res.status(200)
+        // // res.send(product)
+        // res.json(product)
+        res.send(`Hello, I'm visible`)
     }else{
         res.status(404)
         throw new Error('No products Avaliable')
