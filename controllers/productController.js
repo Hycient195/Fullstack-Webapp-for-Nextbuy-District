@@ -19,7 +19,8 @@ const getProducts = asyncHandler(async(req, res)=>{
 const getSingleProductById = asyncHandler(async(req, res)=>{
 
     // The product ID of the particular product is passed in the url
-    const { productId } = req.params.id
+    const productId = req.params.id
+    console.log(productId)
     const foundProduct = await ProductModel.findById(productId)
 
     if(foundProduct){
