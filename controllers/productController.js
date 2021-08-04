@@ -8,8 +8,8 @@ const getProducts = asyncHandler(async(req, res)=>{
 
     if(product){
         res.status(200)
-        res.send(product)
-        // res.json(product)
+        // res.send(product)
+        res.json(product)
     }else{
         res.status(404)
         throw new Error('No products Avaliable')
