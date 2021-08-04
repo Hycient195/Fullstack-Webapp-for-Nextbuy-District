@@ -5,13 +5,13 @@ import route from './routes/route.js'
 import cors from 'cors'
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 7000
 
 /* Configuring .env file */
 dotenv.config()
 
 /* Starting up server and connecting to database */
-app.listen(7000, ()=>{
+app.listen(PORT, ()=>{
     dbConnection()
     console.log(`Server started on port ${PORT}`)
 })
