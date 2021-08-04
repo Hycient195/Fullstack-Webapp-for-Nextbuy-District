@@ -4,19 +4,16 @@ import asyncHandler from 'express-async-handler'
 
 /* Fetching all the products in the product list */
 const getProducts = asyncHandler(async(req, res)=>{
+    const product = await ProductModel.find({})
 
-    res.send(`Hello, I'm visible`)
-
-    // const product = await ProductModel.find({})
-
-    // if(product){
-    //     res.status(200)
-    //     // res.send(product)
-    //     res.json(product)
-    // }else{
-    //     res.status(404)
-    //     throw new Error('No products Avaliable')
-    // }
+    if(product){
+        res.status(200)
+        // res.send(product)
+        res.json(product)
+    }else{
+        res.status(404)
+        throw new Error('No products Avaliable')
+    }
 })
 
 /* Fetching a single product and its details */
