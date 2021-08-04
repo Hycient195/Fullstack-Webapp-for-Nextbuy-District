@@ -5,7 +5,7 @@ const connect = async ()=>{
     const MONGO_DB_URL = "mongodb+srv://Hycient:password1234@cluster0.wujmd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     try {
         console.log(MONGO_DB_URL)
-        mongoose.connect(process.env.MONGO_DB_URL,{
+        mongoose.connect(MONGO_DB_URL,{
             useNewUrlParser : true,
             useUnifiedTopology : true,
             useCreateIndex : true
