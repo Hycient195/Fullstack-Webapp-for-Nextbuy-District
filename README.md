@@ -2,7 +2,7 @@
 
 ## Fetching All Products
 Method : GET
-URL Endpoint : [https://nexbuy-api.herokuapp.com/api/products]      (https://nexbuy-api.herokuapp.com/api/products)
+URL Endpoint : [https://nexbuy-api.herokuapp.com/api/products](https://nexbuy-api.herokuapp.com/api/products)
 
 ## Fetching A Single Product By ID
 Method : GET    
