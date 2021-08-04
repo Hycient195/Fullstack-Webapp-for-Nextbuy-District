@@ -8,7 +8,6 @@ const getProducts = asyncHandler(async(req, res)=>{
 
     if(product){
         res.status(200)
-        // res.send(product)
         res.json(product)
     }else{
         res.status(404)
@@ -25,8 +24,7 @@ const getSingleProductById = asyncHandler(async(req, res)=>{
 
     if(foundProduct){
         res.status(200)
-        res.send(foundProduct)
-        // res.json(foundProduct)
+        res.json(foundProduct)
     }else{
         res.status(404)
         throw new Error('The requested product does not exist')
@@ -42,8 +40,7 @@ const addProduct = asyncHandler(async(req, res)=>{
         })
         res.status(200)
         console.log([product])
-        res.send(product)
-        // res.json(product)
+        res.json(product)
     } catch (err) {
         res.status(404)
         throw new Error('Unable to add new product')
