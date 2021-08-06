@@ -1,11 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import dbConnection from './config/dbConnection.js'
-import route from './routes/route.js'
+import productRoute from './routes/productRoute.js'
+import userRoute from './routes/userRoute.js'
 import cors from 'cors'
 
 const app = express()
-const PORT = process.env.PORT || 7000
+const PORT = process.env.PORT || 7001
 
 /* Configuring .env file */
 dotenv.config()
@@ -24,7 +25,8 @@ app.use(cors({
     origin : '*',
     methods : [ 'GET', 'POST', 'PUT', 'DELETE' ],
 }))
-app.use('/api/products', route)
+app.use('/api/products', productRoute)
+app.use('/api/users', userRoute )
 
 /* For all 404 or invalid URLs */
 

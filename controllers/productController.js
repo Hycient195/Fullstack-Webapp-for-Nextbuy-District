@@ -3,7 +3,20 @@ import asyncHandler from 'express-async-handler'
 
 
 /* Fetching all the products in the product list */
-const getProducts = asyncHandler(async(req, res)=>{
+const getProductList = asyncHandler(async(req, res)=>{
+    const product = await ProductModel.find({})
+
+    if(product){
+        let productNames = product.map((p)=> p.itemName)
+        res.status(200)
+        res.json(productNames)
+    }else{
+        res.status(404)
+        throw new Error('Product deatils unavaliable')
+    }
+})
+
+const getProductDetailed = asyncHandler(async(req, res) =>{
     const product = await ProductModel.find({})
 
     if(product){
@@ -14,7 +27,6 @@ const getProducts = asyncHandler(async(req, res)=>{
         throw new Error('No products Avaliable')
     }
 })
-
 /* Fetching a single product and its details */
 const getSingleProductById = asyncHandler(async(req, res)=>{
 
@@ -40,7 +52,7 @@ const addProduct = asyncHandler(async(req, res)=>{
             itemName, itemPrice, itemQuantity, seller
         })
         res.status(200)
-        console.log([product])
+        console.log(product)
         res.json(product)
     } catch (err) {
         res.status(404)
@@ -48,4 +60,4 @@ const addProduct = asyncHandler(async(req, res)=>{
     }
 
 })
-export { getProducts, getSingleProductById, addProduct }
+export { getProductList, getSingleProductById, addProduct, getProductDetailed }

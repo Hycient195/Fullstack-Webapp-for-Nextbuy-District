@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema({
     }, 
     address : {
         type : String,
-        required : true
+        required : [true, 'Address is a required field']
     },
     cart : [{
         item : {

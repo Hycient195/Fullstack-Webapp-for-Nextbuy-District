@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            margin : 0 auto;
+            text-align: center;
+            margin-top: 150px;
+        }
+        input{
+            height: 40px;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="itemName">
+            <span>Item Name</span>
+            <input name="itemName" type="text">
+        </label>
+
+        <br><br>
+
+        <label for="itemQuantity">
+            <span>Item Quantity</span>
+            <input name="itemQuantity" type="text">
+        </label>
+
+        <br><br>
+
+        <label for="itemPrice">
+            <span>Item Price</span>
+            <input name="itemPrice" type="text">
+        </label>
+
+        <br><br>
+
+        <label for="seller">
+            <span>Seller</span>
+            <input name="seller" type="text">
+        </label>
+        
+        <br><br>
+        <input type="submit">
+    </form>
+</body>
+
+<script>
+    const form = document.querySelector('form')
+
+    form.addEventListener('submit', async (e)=>{
+        e.preventDefault()
+        const itemName = form.itemName.value
+        const itemQuantity = form.itemQuantity.value
+        const itemPrice = form.itemPrice.value
+        const seller = form.seller.value
+
+        const res = await fetch('http://127.0.0.1:7001/api/products', {
+            method : 'POST',
+            body : JSON.stringify({itemName, itemQuantity, itemPrice, seller}),
+            headers : {'Content-Type' : 'Application/json'}
+        })
+
+        const data = await res.json()
+        console.log(data)
+        // console.log(itemQuantity)
+
+    })
+</script>
+</html>

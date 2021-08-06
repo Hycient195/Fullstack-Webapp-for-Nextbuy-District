@@ -1,9 +1,16 @@
 import UserModel from '../models/UserModel.js'
 import asyncHandler from 'express-async-handler'
 
-const getUsers = () =>{
+const getUsers = asyncHandler(async(req, res) =>{
+    const user = await UserModel.find({})
 
-}
+    if(user){
+        res.status(200).json(user)
+    }else{
+        res.status(404)
+        throw new Error('Unable to fetch users')
+    }
+})
 
 const createUser = asyncHandler(async(req, res) =>{
     const { firstName, lastName, email, password, address } = req.body
@@ -20,4 +27,4 @@ const createUser = asyncHandler(async(req, res) =>{
     }
 })
 
-export { createUser}
+export { createUser, getUsers}
