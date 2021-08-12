@@ -124,6 +124,18 @@ export const addToCart = async (req, res) =>{
     } catch (error) {
         
     }
-    // console.log(itemId)
+}
+
+export const fetchUserCart = async (req, res) =>{
+
+    const { userId } = req.body
+       
+    try {
+        const { cart } = await UserModel.findOne({_id : userId})
+        console.log(cart)
+        res.status(200).json({result : cart})
+    } catch (error) {
+        console.log(error)
+    }
 }
 export { createUser }

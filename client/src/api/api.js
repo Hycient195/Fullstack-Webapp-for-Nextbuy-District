@@ -13,6 +13,7 @@ export const getProducts = () => API.get('/products')
 export const signUp = (user) => API.post(`users/sign-up`, user)
 export const signIn = (user) => API.post(`users/sign-in`, user)
 export const addToCart = (itemId) => API.post(`users/add_to_cart`, itemId)
+export const fetchUserCart = (userId) => API.post(`users/fetch_user_cart`, userId)
 
 
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getUsers, signUp, signIn, addToCart } from '../controllers/userController.js'
+import { getUsers, signUp, signIn, addToCart, fetchUserCart } from '../controllers/userController.js'
 
 const router = express.Router()
 
@@ -14,5 +14,8 @@ router.route('/sign-up')
 
 router.route('/add_to_cart')
     .post(addToCart)
+
+router.route('/fetch_user_cart')
+    .post(fetchUserCart)
 
 export default router

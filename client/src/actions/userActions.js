@@ -1,4 +1,4 @@
-import { LIKE, FETCH_ALL, DELETE, UPDATE, CREATE, SIGNUP, LOGIN, AUTHENTICATE, LOGOUT } from '../actionTypes/actionTypes'
+import { LOGIN, AUTHENTICATE, LOGOUT, FETCH_USER_CART } from '../actionTypes/actionTypes'
 import * as api from '../api/api'
 
 
@@ -34,5 +34,15 @@ export const logout = (history) => async(dispatch) =>{
         history.push('/')
     } catch (error) {
         console.log(error.message)
+    }
+}
+
+export const fetchUserCart = (userId) => async(dispatch) =>{
+    try {
+        const { data } = await api.fetchUserCart(userId)
+        console.log(data)
+        dispatch({type : FETCH_USER_CART, payload : data})
+    } catch (error) {
+        
     }
 }

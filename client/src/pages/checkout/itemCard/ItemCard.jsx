@@ -1,7 +1,7 @@
 import { Container, Grid, Typography, Card, CardMedia, CardContent, CardActions, Button, CardHeader, Paper } from '@material-ui/core'
 import { red } from '@material-ui/core/colors';
 import pic from '../../../images/v640-peipei-16-modernbg.jpg'
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { addToCart } from '../../../actions/productActions'
 import { useDispatch } from 'react-redux'
 import { useState  } from 'react'
@@ -18,11 +18,10 @@ const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
         userId : user.result._id
     }
     const addItemToCart = () =>{
-        // console.log(id)
-        dispatch(addToCart(id))
-        setTimeout(() => {
-            alert(`${itemName} has been sucessfully added to cart`)
-        }, 200);
+        // dispatch(addToCart(id))
+        // setTimeout(() => {
+        //     alert(`${itemName} has been sucessfully added to cart`)
+        // }, 200);
     }
     return ( 
             <Card>
@@ -35,10 +34,9 @@ const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
                 />
                 <CardContent>
                 <Typography align="left" color='secondary' variant=''>{seller}</Typography><br/>
-                <Typography variant='' color='textSecondary'>{itemName}</Typography><br/>
-                <Typography variant='' >{itemPrice}</Typography>
+                <Typography noWrap color='textSecondary'>{itemName}</Typography><br/>
+                <Typography  >{itemPrice}<DeleteOutlinedIcon className="delete"/></Typography>
                 {/* <Button className='cart' onClick={addItemToCart} variant=''><ShoppingCartOutlinedIcon className="cart"/></Button> */}
-                <ShoppingCartOutlinedIcon onClick={addItemToCart} className="cart"/>
                 </CardContent>
 
             </Card>

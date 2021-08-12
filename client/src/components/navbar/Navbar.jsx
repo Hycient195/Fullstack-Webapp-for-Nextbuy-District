@@ -1,4 +1,4 @@
-import { Container, Button, ButtonGroup, AppBar, Typography, TextField, Card, CardContent, CardHeader, CardActions, Toolbar, Avatar, Grid } from '@material-ui/core'
+import { Container, Button, ButtonGroup, AppBar, Typography, TextField, Menu, MenuItem, Toolbar, Avatar, Grid } from '@material-ui/core'
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import useStyles from './Navbar.style'
 import { logout } from '../../actions/userActions'
@@ -23,6 +23,7 @@ const Navbar = () =>{
   useEffect(()=>{
     if(user)setGridValue(10)
   }, [user])
+
 
   return(
     
@@ -78,7 +79,11 @@ const Navbar = () =>{
 
       {
         user ? (
-          <Button onClick={handleLogout} variant="contained">Logout</Button>
+          <>
+            <Button onClick={handleLogout} variant="contained">Logout</Button>
+            <Link to='/checkout'><Button variant='contained'>Checkout</Button></Link>
+          </>
+          
         ) : (
           <Link to='/login'><Button variant='contained'>Login</Button></Link>
         )

@@ -7,6 +7,7 @@ import Signup from './pages/signup/Signup.jsx'
 import Footer from './components/footer/Footer.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
 import Login from './pages/login/Login.jsx';
+import Checkout from './pages/checkout/Checkout.jsx';
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
 
           <Route exact path="/login">
             <Login/>
+          </Route>
+
+          <Route exact path="/checkout">
+            <Checkout/>
           </Route>
 
         </Switch>
