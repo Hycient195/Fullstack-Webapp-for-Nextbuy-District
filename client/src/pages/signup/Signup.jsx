@@ -5,16 +5,20 @@ import useStyles from './Signup.style'
 import { signup } from '../../actions/userActions'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useState } from "react"
+import { useHistory } from 'react-router-dom'
 
 const Signup = () =>{
     const classes = useStyles()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
     const [phoneNumber, setPhoneNumber ] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [confirmPassword, setConfirmPassword] = useState()
+
 
     // const store = useStore()
     // console.log(store.getState().userReducer.data)
@@ -24,13 +28,13 @@ const Signup = () =>{
 
     const user = {
         firstName, lastName,
-        phoneNumber, email, password
+        phoneNumber, email, password, confirmPassword
     }
 
     
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        dispatch(signup(user))
+        dispatch(signup(user, history))
     }
 
     return(
@@ -87,9 +91,18 @@ const Signup = () =>{
                         color="secondary"
                         onChange={(e)=>setPassword(e.target.value)}
                     />
+                    <TextField
+                        variant="outlined"
+                        fullWidth
+                        label="Confirm Password"
+                        type='password'
+                        required
+                        color="secondary"
+                        onChange={(e)=>setConfirmPassword(e.target.value)}
+                    />
                 {/* </FormControl> */}
 
-                <Button onClick={handleSubmit} variant="outlined" color="textPrimary" type="submit">
+                <Button variant="outlined" color="textPrimary" type="submit">
                     Submit
                 </Button>
             </form>

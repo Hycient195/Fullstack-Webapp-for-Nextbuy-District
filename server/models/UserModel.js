@@ -29,32 +29,36 @@ const UserSchema = mongoose.Schema({
     //     type : String,
     //     required : [true, 'Address is a required field']
     // },
-    cart : [{
-        item : {
+    cart : [
+        {
             itemName : {
                 type : String,
-                required : true
+                required : false
             },
             itemPrice : {
                 type : Number,
-                required : true
+                required : false
             },
             itemQuantity : {
                 type : Number,
-                required : true
+                required : false
             }, 
             seller : {
                 type : String,
-                requiered : true
+                required : false
+            },
+            itemDetails : {
+                type : String,
+                required : false
             }
         }
-    }]
+    ]
 })
 
-UserSchema.pre('save', async function(next){
-    const salt = await bcrypt.genSalt()
-    this.password = await bcrypt.hash(this.password, salt)
-})
+// UserSchema.pre('save', async function(next){
+//     const salt = await bcrypt.genSalt()
+//     this.password = await bcrypt.hash(this.password, salt)
+// })
 
 const User = mongoose.model('user', UserSchema)
 export default User

@@ -3,25 +3,28 @@ import { red } from '@material-ui/core/colors'
 
 const useStyles = makeStyles({
     appBar : {
-        height : 50,
+        paddingTop : 5,
+        height : 60,
         background : 'red'
     }, 
     search : {
-        // marginTop : 50,
-        width : '80%',
+        marginTop : 0,
+        width : '90%',
         borderRadius : 50,
-        height : 40,
+        fontSize : 'large',
+        // height : 30,
         border : 0,
-        paddingLeft : 10
+        padding : 10
     }, 
     form : {
         textAlign : 'center',
         float : 'center'
     },
     nav : {
+        marginTop : 90,
         position: 'absolute',
         width: "100%",
-        height: 150,
+        height: 80,
         left: -1,
         top: -31,
         background: 'silver',
@@ -34,20 +37,40 @@ const useStyles = makeStyles({
         fontSize : 9
     },
     ul : {
-        marginTop : 100,
-        overflowX : 'scroll',
+        height : '80%',
+        marginTop : 80,
+
+        // overflowX : 'scroll',
         // listStyle : 'none',
         listStyleType: 'none',
         margin: 0,
         padding: 0,
+        borderBottom : '1px solid red',
+        borderRadius : 0
+        // bottom : 100
     },
-    // a : {
-    //     display: 'block',
-    //     color: 'white',
-    //     textAlign: 'center',
-    //     padding: 16,
-    //     textDecoration: 'none',
-    // }
+    li : {
+        // bottom : 0,
+        height : '100%',
+        display : 'inline',
+        borderBottom : '2px solid red',
+        marginBottom : 0
+    },
+    a : {
+        // display: 'inline',
+        color: 'white',
+        // textAlign: 'center',
+        padding: 70,
+        // background : 'green',
+        textDecoration: 'none',
+    },
+    userDetails : {
+        float : 'right'
+    },
+    grid : {
+        textAlign : 'center',
+        float : 'center'
+    }
 })
 
 export default useStyles

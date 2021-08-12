@@ -1,6 +1,6 @@
 import { Container, Grid } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useStyles from './Home.style.js'
 import ItemCard from './itemCard/ItemCard.jsx';
 import { fetchProducts } from '../../actions/productActions'
@@ -17,26 +17,25 @@ const Posts = () =>{
         dispatch(fetchProducts())
     },[dispatch])
 
-    const products = useSelector((state)=> state.productReducer.data)
+    const products = useSelector((state)=> state.productReducer)
     console.log(products)
 
     return(
-        <Container>
-            <Grid container spacing={1}>
-                {products && products.map((product)=>(
-                    
-                    <Grid item xs={6}>
-                        <ItemCard
-                        key={product._id}
+        <Grid className={classes.container} container spacing={1}>
+            {products && products.map((product)=>(
+                
+                <Grid item xs={6} md={4} lg={3} key={product._id}>
+                    <ItemCard
                         seller={product.seller} 
                         itemPrice={product.itemPrice} 
                         itemName={product.itemName}  
-                        />
-                    </Grid>                    
-                ))}
-            </Grid>
+                        itemDetails={product.itemDetails}
+                        itemId={product._id}
+                    />
+                </Grid>                    
+            ))}
+        </Grid>
            
-         </Container>
     )
 }
 

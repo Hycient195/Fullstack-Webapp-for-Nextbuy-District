@@ -6,10 +6,12 @@ import Home from './pages/home/Home'
 import Signup from './pages/signup/Signup.jsx'
 import Footer from './components/footer/Footer.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
+import Login from './pages/login/Login.jsx';
 
 function App() {
 
   const classes = useStyles()
+  
 
   return (
     <BrowserRouter>
@@ -33,6 +35,9 @@ function App() {
             <Signup/>
           </Route>
 
+          <Route exact path="/login">
+            <Login/>
+          </Route>
 
         </Switch>
 

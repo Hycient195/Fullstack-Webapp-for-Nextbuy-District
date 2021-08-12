@@ -1,26 +1,31 @@
-import jwt from 'json-web-token'
+import jwt from 'jsonwebtoken'
 
-export default authenticator = async (req, res, next) =>{
+const authenticator = async (req, res, next) =>{
 
-    let token;
+    try {
+        
+        const token = req.headers.authorization.split(" ")[1];
+        const isCustomToken = token.length < 500
 
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        try {
-            token = req.headers.authorization.split(' ')[1]
-            const decodedToken = await jwt.verify(token, process.env.JWT_SECRET)
-            console.log(decodedToken)
-            next()
+        let decodedData;
+        console.log(decodedData)
 
-        } catch (error) {
-            res.status(401)
-            console.log('Incorrect user credentials')
-            res.json({message : 'Incorrect user credentials'})
+        if (token && isCustomToken) {
+            decodedData = jwt.verify(token, process.env.JWT_SECRET)
+
+            req.userId = decodedData?.id
+        } else {
+            decodedData = jwt.decode(token)
+
+            req.userId = decodedData?.sub
         }
-    } else {
+        next()
+    } catch (error) {
+        console.log(error)
         res.status(401)
-        console.log('Incorrect user credentials')
         res.json({message : 'Incorrect user credentials'})
     }
-
    
 }
+
+export default authenticator

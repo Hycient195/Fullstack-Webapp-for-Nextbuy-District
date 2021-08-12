@@ -7,3 +7,6 @@ img {
 .paper{
     width : 50%;
 }
+.cart{
+    float: right;
+}
