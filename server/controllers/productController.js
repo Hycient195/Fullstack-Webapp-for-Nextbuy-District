@@ -44,20 +44,20 @@ const getSingleProductById = asyncHandler(async(req, res)=>{
     }
 })
 
-const addProduct = asyncHandler(async(req, res)=>{
-    const { itemName, itemPrice, itemQuantity, seller, itemDetails } = req.body
+export const addNewProduct = asyncHandler(async(req, res)=>{
+    const { itemName, itemPrice, itemQuantity, seller, itemDetails, itemImage } = req.body
 
     try {
         const product = await ProductModel.create({
-            itemName, itemPrice, itemQuantity, seller, itemDetails
+            itemName, itemPrice, itemQuantity, seller, itemDetails, itemImage
         })
         res.status(200)
         console.log(product)
         res.json(product)
     } catch (err) {
         res.status(404)
-        throw new Error('Unable to add new product')
+        res.json({message : 'Could not add new product'})
     }
 
 })
-export { getProductList, getSingleProductById, addProduct, getProductDetailed }
+export { getProductList, getSingleProductById, getProductDetailed }

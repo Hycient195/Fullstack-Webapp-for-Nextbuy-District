@@ -1,13 +1,15 @@
 import express from 'express'
 import authenticator from '../middleware/authenticator.js'
 
-import { getProductList, getSingleProductById, addProduct, getProductDetailed } from '../controllers/productController.js'
+import { getProductList, getSingleProductById, addNewProduct, getProductDetailed } from '../controllers/productController.js'
 const router = express.Router()
 
 
 router.route('/')
-    .get(authenticator, getProductDetailed)
-    .post(addProduct)
+    .get(getProductDetailed)
+
+router.route('/add_new_product')
+    .post(addNewProduct)
 
 router.route('/list')
     .get(getProductList)

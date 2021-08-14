@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import bodyParser from 'body-parser'
 import dbConnection from './config/dbConnection.js'
 import productRoute from './routes/productRoute.js'
 import userRoute from './routes/userRoute.js'
@@ -20,7 +21,8 @@ app.listen(PORT, ()=>{
 app.set('json spaces', 2)
 
 /* Middleware */
-app.use(express.json())
+app.use(express.json({limit : "30mb", extended : true}))
+app.use(express.urlencoded({ limit : "30mb", extended : true}))
 app.use(cors({
     origin : '*',
     methods : [ 'GET', 'POST', 'PUT', 'DELETE' ],

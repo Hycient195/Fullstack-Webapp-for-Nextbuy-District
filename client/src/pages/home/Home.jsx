@@ -31,6 +31,7 @@ const Posts = () =>{
                         itemName={product.itemName}  
                         itemDetails={product.itemDetails}
                         itemId={product._id}
+                        itemImage={product.itemImage}
                     />
                 </Grid>                    
             ))}

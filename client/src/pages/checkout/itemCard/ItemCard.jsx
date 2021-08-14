@@ -2,40 +2,39 @@ import { Container, Grid, Typography, Card, CardMedia, CardContent, CardActions,
 import { red } from '@material-ui/core/colors';
 import pic from '../../../images/v640-peipei-16-modernbg.jpg'
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { addToCart } from '../../../actions/productActions'
+import { removeItemFromCart } from '../../../actions/userActions'
 import { useDispatch } from 'react-redux'
 import { useState  } from 'react'
+import { useHistory } from 'react-router-dom'
 import './itemCard.css'
 
 
-const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
+const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId, itemImage, itemIndex, userId }) => {
 
     const dispatch = useDispatch()
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+    const history = useHistory()
 
-    const id = {
-        itemId : itemId,
-        userId : user.result._id
+    const handleRemoveItem = () =>{
+        console.log(userId, itemIndex)
+        dispatch(removeItemFromCart(itemIndex, userId))
+        setTimeout(()=>{
+            history.go('/chechout')
+        },50)
     }
-    const addItemToCart = () =>{
-        // dispatch(addToCart(id))
-        // setTimeout(() => {
-        //     alert(`${itemName} has been sucessfully added to cart`)
-        // }, 200);
-    }
+
     return ( 
             <Card>
                
                 <CardMedia 
                     component='img'
                     className='pic'
-                    image={pic}
+                    image={itemImage}
                     title={itemDetails}
                 />
                 <CardContent>
                 <Typography align="left" color='secondary' variant=''>{seller}</Typography><br/>
                 <Typography noWrap color='textSecondary'>{itemName}</Typography><br/>
-                <Typography  >{itemPrice}<DeleteOutlinedIcon className="delete"/></Typography>
+                <Typography  >{itemPrice}<DeleteOutlinedIcon onClick={handleRemoveItem} className="delete"/></Typography>
                 {/* <Button className='cart' onClick={addItemToCart} variant=''><ShoppingCartOutlinedIcon className="cart"/></Button> */}
                 </CardContent>
 

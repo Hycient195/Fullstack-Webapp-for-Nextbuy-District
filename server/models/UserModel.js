@@ -50,6 +50,10 @@ const UserSchema = mongoose.Schema({
             itemDetails : {
                 type : String,
                 required : false
+            },
+            itemImage : {
+                type : String,
+                required : false
             }
         }
     ]

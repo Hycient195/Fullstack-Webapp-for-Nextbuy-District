@@ -5,20 +5,25 @@ import { logout } from '../../actions/userActions'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom'
+
+
 const Navbar = () =>{
 
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
   const [gridValue, setGridValue] = useState(12)
-  console.log(user)
 
   const handleLogout = (e)=>{
     e.preventDefault()
+    history.go('/')
     dispatch(logout(history))
   }
+
+  const user = JSON.parse(localStorage.getItem('profile'))
+
+  
 
   useEffect(()=>{
     if(user)setGridValue(10)
@@ -45,19 +50,17 @@ const Navbar = () =>{
                 </label>
               </form>
             </Grid>
-
-            <Grid item xs={2} sm={2}>
-              {
-                user ? (
-                  <div className={classes.userDetails}>
-                    <Avatar src={user.result.firstName[0]}/>
-                    <Typography color='primary' variant='body2'>{user.result.firstName}</Typography>
-                  </div>
-                ):(
-                  console.log(user)
-                )
-              }
-            </Grid>
+            
+            {   
+              user && 
+              <Grid item xs={2} sm={2}>
+                <div className={classes.userDetails}>
+                  <Avatar src={user.result.firstName[0]}/>
+                  <Typography color='primary' variant='body2'>{user.result.firstName}</Typography>
+                </div>
+              </Grid>
+            }
+           
           </Grid>
         </Container>
          

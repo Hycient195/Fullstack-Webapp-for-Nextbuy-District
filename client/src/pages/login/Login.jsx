@@ -16,11 +16,15 @@ const Login = () => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         dispatch(login(user, history))
+        // setTimeout(()=>{
+        //     history.push('/')
+        // }, 150)
+
     }
 
     return ( 
         <Container className="container">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <TextField
                     variant="outlined"
                     fullWidth
@@ -41,7 +45,7 @@ const Login = () => {
                     onChange={(e)=>setPassword(e.target.value)}
                 />
                 <br/><br/>
-                <Button variant="outlined" color='secondary' onClick={handleSubmit} type="submit">Login</Button>
+                <Button variant="outlined" color='secondary' type="submit">Login</Button>
             </form>
         
         </Container>

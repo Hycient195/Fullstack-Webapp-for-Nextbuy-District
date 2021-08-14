@@ -4,6 +4,7 @@ import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import generateToken from '../utilities/generateToken.js'
+import mongoose from 'mongoose'
 
 export const getUsers = asyncHandler(async(req, res) =>{
     const user = await UserModel.find({})
@@ -115,10 +116,10 @@ export const addToCart = async (req, res) =>{
             user.phoneNumber = user.phoneNumber
             user.email = user.email
             user.password = user.password
+            user.itemImage = user.itemImage
             user.cart = [...user.cart, product]
-    
             const updatedUser = await user.save()
-            console.log(updatedUser)
+            // console.log(updatedUser)
         }    
  
     } catch (error) {
@@ -132,8 +133,34 @@ export const fetchUserCart = async (req, res) =>{
        
     try {
         const { cart } = await UserModel.findOne({_id : userId})
-        console.log(cart)
+        // console.log(cart)
         res.status(200).json({result : cart})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const removeItemFromCart = async (req, res) =>{
+    const  {itemIndex}  = req.params
+    const {userId} = req.body
+    console.log(itemIndex, userId)
+    try {
+        const user = await UserModel.findById(userId)
+        // const cartArray = user.cart
+
+        if(user){
+            user.firstName = user.firstName
+            user.lastName = user.lastName
+            user.phoneNumber = user.phoneNumber
+            user.email = user.email
+            user.password = user.password
+            user.itemImage = user.itemImage
+                // const filteredCart = user.cart[itemIndex]
+            user.cart = user.cart.filter((item, index)=> index != itemIndex)
+            const updatedUser = await user.save()
+            // console.log(updatedUser)
+        }    
+        res.status(200).json(user)
     } catch (error) {
         console.log(error)
     }

@@ -1,4 +1,4 @@
-import { LOGIN, AUTHENTICATE, LOGOUT, FETCH_USER_CART } from '../actionTypes/actionTypes'
+import { LOGIN, AUTHENTICATE, LOGOUT, FETCH_USER_CART, REMOVE_ITEM_FROM_CART } from '../actionTypes/actionTypes'
 import * as api from '../api/api'
 
 
@@ -22,6 +22,7 @@ export const login = (user, history) => async(dispatch)=>{
         const {data} = await api.signIn(user)
         console.log(data)
         dispatch({type : AUTHENTICATE, data})
+        
         history.push('/')
     } catch (error) {
         console.log(error.message)
@@ -40,9 +41,19 @@ export const logout = (history) => async(dispatch) =>{
 export const fetchUserCart = (userId) => async(dispatch) =>{
     try {
         const { data } = await api.fetchUserCart(userId)
-        console.log(data)
+        // console.log(data)
         dispatch({type : FETCH_USER_CART, payload : data})
     } catch (error) {
         
+    }
+}
+
+export const removeItemFromCart = (itemIndex, userId) => async(dispatch) =>{
+    try {
+        const {data}  = await api.removeItemFromCart(itemIndex, userId)
+        console.log(data)
+        dispatch({type : REMOVE_ITEM_FROM_CART, payload : data})
+    } catch (error) {
+        console.log(error)
     }
 }

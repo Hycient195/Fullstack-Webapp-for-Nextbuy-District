@@ -8,18 +8,20 @@ import { useState  } from 'react'
 import './itemCard.css'
 
 
-const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
+const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId, itemImage }) => {
 
     const dispatch = useDispatch()
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
 
     const id = {
         itemId : itemId,
-        userId : user.result._id
+        userId : user?.result?._id
     }
+   
     const addItemToCart = () =>{
         // console.log(id)
         dispatch(addToCart(id))
+
         setTimeout(() => {
             alert(`${itemName} has been sucessfully added to cart`)
         }, 200);
@@ -30,7 +32,7 @@ const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
                 <CardMedia 
                     component='img'
                     className='pic'
-                    image={pic}
+                    image={itemImage}
                     title={itemDetails}
                 />
                 <CardContent>
@@ -38,7 +40,7 @@ const ItemCard = ({ seller, itemPrice, itemName, itemDetails, itemId }) => {
                 <Typography variant='' color='textSecondary'>{itemName}</Typography><br/>
                 <Typography variant='' >{itemPrice}</Typography>
                 {/* <Button className='cart' onClick={addItemToCart} variant=''><ShoppingCartOutlinedIcon className="cart"/></Button> */}
-                <ShoppingCartOutlinedIcon onClick={addItemToCart} className="cart"/>
+                { id.userId && <ShoppingCartOutlinedIcon onClick={addItemToCart} className="cart"/>}
                 </CardContent>
 
             </Card>

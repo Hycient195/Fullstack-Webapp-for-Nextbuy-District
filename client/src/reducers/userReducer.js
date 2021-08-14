@@ -1,4 +1,4 @@
-import  {FETCH_USER_CART, SIGNUP, LOGIN, LOGOUT, AUTHENTICATE} 
+import  {FETCH_USER_CART, SIGNUP, LOGIN, LOGOUT, AUTHENTICATE, REMOVE_ITEM_FROM_CART} 
         from '../actionTypes/actionTypes'
 
 
@@ -13,6 +13,8 @@ const userReducer = (state = { authData : null }, action) =>{
         case LOGOUT : 
             localStorage.clear()
         case FETCH_USER_CART : 
+            return action.payload
+        case REMOVE_ITEM_FROM_CART :
             return action.payload
         default : 
             return state

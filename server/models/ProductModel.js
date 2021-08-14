@@ -20,6 +20,10 @@ const ProductSchema = mongoose.Schema({
     itemDetails : {
         type : String,
         required : false
+    },
+    itemImage : {
+        type : String,
+        required : false
     }
 })
 

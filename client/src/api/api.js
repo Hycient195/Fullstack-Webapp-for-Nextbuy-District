@@ -14,6 +14,8 @@ export const signUp = (user) => API.post(`users/sign-up`, user)
 export const signIn = (user) => API.post(`users/sign-in`, user)
 export const addToCart = (itemId) => API.post(`users/add_to_cart`, itemId)
 export const fetchUserCart = (userId) => API.post(`users/fetch_user_cart`, userId)
+export const addNewProduct = (newProduct) => API.post(`/products/add_new_product`, newProduct)
+export const removeItemFromCart = (itemIndex, userId) => API.post(`users/remove_item_from_cart/${itemIndex}`, userId)
 
 
 

@@ -1,4 +1,4 @@
-import { Container, Grid } from '@material-ui/core'
+import { Container, Grid, CircularProgress } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import ItemCard from './itemCard/ItemCard'
 import './checkout.css'
@@ -16,29 +16,43 @@ const Checkout = () => {
 
     useEffect(()=>{
         dispatch(fetchUserCart(userId))
-    }, [dispatch])
+    }, [])
 
 
     const userCart = useSelector((result)=> result.userReducer.result)
-    console.log(userCart)
+
+  
+    // console.log(userCart)
 
     return ( 
-        <Container>
-        <Grid className='container' container spacing={1}>
+        <Container className='container'>
+            
+        <Grid  container spacing={1}>
 
-            {
-                userCart && userCart.map((product) => (
-                    <Grid item xs={4} md={3} lg={3} key={product._id}>
+        {
+            !userCart && (
+                <CircularProgress color="secondary" className="loading"/>
+            )
+        }
+            
+        {
+            userCart && (
+                    userCart.map((product, index) => (
+                    <Grid item xs={4} md={3} lg={3} key={index}>
                     <ItemCard
                         seller={product.seller} 
                         itemPrice={product.itemPrice} 
                         itemName={product.itemName}  
                         itemDetails={product.itemDetails}
                         itemId={product._id}
+                        itemImage={product.itemImage}
+                        itemIndex={index}
+                        userId={userId}
                     />
                 </Grid>  
                 ))
-            }
+            ) 
+        }
         </Grid>
         </Container>
      );
