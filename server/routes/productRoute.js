@@ -5,7 +5,7 @@ import { getProductList, getSingleProductById, addNewProduct, getProductDetailed
 const router = express.Router()
 
 
-router.route('/')
+router.route('/get_products')
     .get(getProductDetailed)
 
 router.route('/add_new_product')
